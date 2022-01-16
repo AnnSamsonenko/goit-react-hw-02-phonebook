@@ -2,8 +2,12 @@ import styled from "styled-components";
 import { font } from "../../helpers/mixins";
 
 export const PageButton = styled.button`
-  padding: ${(props) => props.theme.spacing(3)};
-  min-width: ${(props) => props.theme.spacing(22)};
+  padding: ${(props) =>
+    props.type === "button" ? props.theme.spacing(2) : props.theme.spacing(3)};
+  min-width: ${(props) =>
+    props.type === "button"
+      ? props.theme.spacing(14)
+      : props.theme.spacing(22)};
   border-radius: ${(props) => props.theme.spacing(4)};
   ${font({ fs: 16, fw: 600, lh: 20 })};
   background-color: ${(props) => props.theme.colors.buttonBg};

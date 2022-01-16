@@ -9,11 +9,3 @@ export const List = styled.ul`
   text-shadow: 1px 1px 0 ${(props) => props.theme.colors.white};
   color: ${(props) => props.theme.colors.buttonText};
 `;
-
-export const Item = styled.li`
-  display: flex;
-  justify-content: space-between;
-  &:not(:last-child) {
-    margin-bottom: ${(props) => props.theme.spacing(3)};
-  }
-`;

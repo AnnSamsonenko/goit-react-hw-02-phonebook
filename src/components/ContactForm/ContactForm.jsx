@@ -5,6 +5,7 @@ import * as yup from "yup";
 import "yup-phone";
 import { Button } from "components/Button/Button";
 import { FormStyled, Input, Message, LabelStyled } from "./ContactFormStyled";
+import propTypes from "prop-types";
 const validationSchema = yup.object({
   name: yup.string().required(),
   number: yup.string().phone().required(),
@@ -28,7 +29,7 @@ const FormError = ({ name }) => {
 export class ContactForm extends Component {
   handleSubmit = ({ name, number }, { resetForm }) => {
     const isNameInContacts = this.props.contacts.find(
-      (contact) => contact.name === name
+      (contact) => contact.name.toLowerCase() === name.toLowerCase()
     );
 
     if (isNameInContacts) {
@@ -69,3 +70,8 @@ export class ContactForm extends Component {
     );
   }
 }
+
+ContactForm.propTypes = {
+  onSubmit: propTypes.func.isRequired,
+  contacts: propTypes.arrayOf(propTypes.object).isRequired,
+};

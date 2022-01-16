@@ -1,6 +1,8 @@
 import { Component } from "react";
 import { SearchInput, FilterWrapper } from "./FilterStyled";
 import { LabelStyled } from "components/ContactForm/ContactFormStyled";
+import propTypes from "prop-types";
+
 export class Filter extends Component {
   handleChange = ({ target: { value } }) => {
     this.props.onChange(value);
@@ -17,3 +19,7 @@ export class Filter extends Component {
     );
   }
 }
+
+Filter.propTypes = {
+  onChange: propTypes.func.isRequired,
+};

@@ -1,5 +1,6 @@
-import { List, Item } from "./ContactListStyled";
-
+import { List } from "./ContactListStyled";
+import { ContactsItem } from "components/ContactsItem/ContactsItem";
+import propTypes from "prop-types";
 export const ContactList = ({ contacts, filter, onDelete }) => {
   return (
     <List>
@@ -9,23 +10,29 @@ export const ContactList = ({ contacts, filter, onDelete }) => {
               name.toLowerCase().includes(filter.toLowerCase())
             )
             .map(({ name, number, id }) => (
-              <Item key={id}>
-                <span>{name}:</span>
-                <span>{number} </span>
-                <button type="button" onClick={() => onDelete(id)}>
-                  Delete
-                </button>
-              </Item>
+              <ContactsItem
+                key={id}
+                name={name}
+                id={id}
+                number={number}
+                onDelete={onDelete}
+              />
             ))
         : contacts.map(({ name, number, id }) => (
-            <Item key={id}>
-              <span>{name}:</span>
-              <span>{number} </span>
-              <button type="button" onClick={() => onDelete(id)}>
-                Delete
-              </button>
-            </Item>
+            <ContactsItem
+              key={id}
+              name={name}
+              id={id}
+              number={number}
+              onDelete={onDelete}
+            />
           ))}
     </List>
   );
+};
+
+ContactList.propTypes = {
+  contacts: propTypes.arrayOf(propTypes.object).isRequired,
+  filter: propTypes.string.isRequired,
+  onDelete: propTypes.func.isRequired,
 };
